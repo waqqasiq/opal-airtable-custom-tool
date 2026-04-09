@@ -93,4 +93,116 @@ app.post("/tools/get_airtable_data", async (req: Request, res: Response) => {
   }
 });
 
+// ─── Root ─────────────────────────────────────────────────────────────────────
+app.get("/", (req: Request, res: Response) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Opal Airtable Tool</title>
+      <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+          background: #0f0f0f;
+          color: #f0f0f0;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .card {
+          background: #1a1a1a;
+          border: 1px solid #2a2a2a;
+          border-radius: 16px;
+          padding: 48px;
+          max-width: 480px;
+          width: 90%;
+          text-align: center;
+        }
+        .badge {
+          display: inline-block;
+          background: #1a3a2a;
+          color: #4ade80;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.05em;
+          padding: 4px 12px;
+          border-radius: 999px;
+          margin-bottom: 24px;
+          border: 1px solid #166534;
+        }
+        h1 {
+          font-size: 24px;
+          font-weight: 700;
+          margin-bottom: 8px;
+          color: #ffffff;
+        }
+        p {
+          font-size: 15px;
+          color: #888;
+          line-height: 1.6;
+          margin-bottom: 32px;
+        }
+        .endpoints {
+          text-align: left;
+          background: #111;
+          border: 1px solid #222;
+          border-radius: 10px;
+          overflow: hidden;
+        }
+        .endpoint {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 14px 18px;
+          border-bottom: 1px solid #222;
+          font-size: 14px;
+        }
+        .endpoint:last-child { border-bottom: none; }
+        .method {
+          font-size: 11px;
+          font-weight: 700;
+          padding: 3px 8px;
+          border-radius: 6px;
+          min-width: 42px;
+          text-align: center;
+        }
+        .get  { background: #1a3a2a; color: #4ade80; }
+        .post { background: #1a2a3a; color: #60a5fa; }
+        .path { color: #e0e0e0; font-family: monospace; }
+        .desc { color: #666; font-size: 12px; margin-left: auto; }
+        .footer {
+          margin-top: 28px;
+          font-size: 12px;
+          color: #444;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="card">
+        <div class="badge">● Live</div>
+        <h1>Opal Airtable Tool</h1>
+        <p>A custom tool for Optimizely Opal that fetches records from Airtable and returns structured data.</p>
+        <div class="endpoints">
+          <div class="endpoint">
+            <span class="method get">GET</span>
+            <span class="path">/discovery</span>
+            <span class="desc">Tool manifest</span>
+          </div>
+          <div class="endpoint">
+            <span class="method post">POST</span>
+            <span class="path">/tools/get_airtable_data</span>
+            <span class="desc">Fetch records</span>
+          </div>
+        </div>
+        <div class="footer">Deployed on Vercel · Optimizely Opal Custom Tool</div>
+      </div>
+    </body>
+    </html>
+  `);
+});
+
 export default app;
